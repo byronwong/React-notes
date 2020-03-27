@@ -84,7 +84,7 @@ export default StorePicker;
 
 So how do we bind them?
 
-### Solution A The plain ES6 way
+### Solution A -- The plain ES6 way
 
 Here we use the constructor and do our binding within. The problem here is that we may have multiple methods to bind so we would have to do this for each method on the class.
 
@@ -124,8 +124,37 @@ class StorePicker extends React.Component {
 export default StorePicker;
 ```
 
-### Solution B
+### Solution B -- Using properties
 
-```
+Here, instead of using the method `goToStore` we will make it a property and then assign an arrow function to it. As properties are assigned to the instance. NOTE: this work differently with arrow function; this is inheritence from the parent scope.
 
+```js
+class StorePicker extends React.Component {
+  myInput = React.createRef();
+
+  goToStore = event => {
+    event.preventDefault();
+    console.log(this); // returns instance
+  };
+
+  render() {
+    return (
+      <Fragment>
+        <form className="store-selector" onSubmit={this.goToStore}>
+          <h2>Please enter a store</h2>
+          <input
+            type="text"
+            ref={this.myInput}
+            placeholder="Store Name"
+            required
+            defaultValue={getFunName()}
+          />
+          <button type="submit">Visit Store</button>
+        </form>
+      </Fragment>
+    );
+  }
+}
+
+export default StorePicker;
 ```
