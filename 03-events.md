@@ -84,14 +84,15 @@ export default StorePicker;
 
 So how do we bind them?
 
-### Soultion A The plain ES6 way
+### Solution A The plain ES6 way
 
-Here we use the constructor.
+Here we use the constructor and do our binding within. The problem here is that we may have multiple methods to bind so we would have to do this for each method on the class.
 
 ```js
 class StorePicker extends React.Component {
   constructor() {
-    super();
+    super(); // use super as we are extending React.Component
+    this.goToStore = this.goToStore.bind(this); // 'this' is the instance of store picker
   }
 
   myInput = React.createRef();
@@ -123,7 +124,8 @@ class StorePicker extends React.Component {
 export default StorePicker;
 ```
 
+### Solution B
+
 ```
 
-### Soultion B
 ```
