@@ -161,9 +161,14 @@ export default StorePicker;
 
 ## Passing arguments to event handlers
 
+(Working Example)[https://jscomplete.com/playground/rgs1.6]
+
 ```js
 // Button component
 function Button(props) {
+  // Cleaner to create:
+  const handleClick = () => props.handleClick(props.incrementVal);
+
   return (
     // here we use an arrow function to wrap the `handleClick` function so that we are passing a reference and not invoking it
     // Note: you can also do this at the parent level: https://reactjs.org/docs/handling-events.html#passing-arguments-to-event-handlers
